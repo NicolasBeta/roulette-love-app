@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta de Recuerdos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Nuestra Ruleta ❤️</h1>
+        
+        <div id="photo-frame">
+            <img id="current-photo" src="https://via.placeholder.com/300?text=Gira+la+ruleta" alt="Recuerdo">
+        </div>
+
+        <button id="spin-btn">🎲 Girar Ruleta</button>
+        
+        <hr>
+        
+        <div class="upload-section">
+            <input type="file" id="photo-upload" accept="image/*">
+            <button id="upload-btn">Subir Recuerdo</button>
+            <p id="status-msg"></p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
