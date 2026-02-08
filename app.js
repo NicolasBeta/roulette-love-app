@@ -1,12 +1,12 @@
 // --- 1. CONFIGURACIÓN ---
 // Pega aquí TU configuración (la misma que tenías antes)
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-    projectId: "TU_PROYECTO",
-    storageBucket: "TU_PROYECTO.appspot.com",
-    messagingSenderId: "NUMEROS",
-    appId: "NUMEROS"
+  apiKey: "AIzaSyCtWniJd3C2N9JpvUhakBlCdLcmJ_O1jis",
+  authDomain: "roulette-love-app.firebaseapp.com",
+  projectId: "roulette-love-app",
+  storageBucket: "roulette-love-app.firebasestorage.app",
+  messagingSenderId: "795794281993",
+  appId: "1:795794281993:web:0ce1ce994a505def348ad8"
 };
 
 // Inicializar Firebase (Solo Firestore esta vez)
