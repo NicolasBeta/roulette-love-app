@@ -3,31 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruleta de Recuerdos</title>
+    <title>Nuestra Galería ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Nuestra Ruleta ❤️</h1>
+
+    <div class="app-container">
+        <h1>Nuestros Recuerdos ❤️</h1>
         
-        <div id="photo-frame">
-            <img id="current-photo" src="https://via.placeholder.com/300?text=Gira+la+ruleta" alt="Recuerdo">
+        <div class="carousel-container" id="carousel">
+            <p class="loading-text">Cargando recuerdos...</p>
         </div>
 
-        <button id="spin-btn">🎲 Girar Ruleta</button>
-        
         <hr>
-        
+
         <div class="upload-section">
-            <input type="file" id="photo-upload" accept="image/*">
-            <button id="upload-btn">Subir Recuerdo</button>
+            <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+            <button id="upload-btn" class="btn-main"><i class="fas fa-plus"></i> Agregar Nuevo Recuerdo</button>
             <p id="status-msg"></p>
+        </div>
+    </div>
+
+    <div id="photo-modal" class="modal hidden">
+        <span class="close-modal">&times;</span>
+        
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="Recuerdo grande">
+        </div>
+
+        <div class="modal-controls">
+            <button id="rotate-left" class="btn-icon"><i class="fas fa-undo"></i></button>
+            <button id="delete-photo" class="btn-icon btn-danger"><i class="fas fa-trash"></i></button>
+            <button id="rotate-right" class="btn-icon"><i class="fas fa-redo"></i></button>
         </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

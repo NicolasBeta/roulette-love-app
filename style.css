@@ -1,56 +1,173 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #ffe6e6; /* Un rosita suave */
+    
+    /* --- FONDO --- */
+    /* Un degradado romántico de rojo oscuro a negro */
+    background: linear-gradient(135deg, #4a0e0e 0%, #141414 100%);
+    /* Aseguramos que si el degradado falla, el fondo sea oscuro y no blanco */
+    background-color: #141414; 
+    
+    color: white; /* Texto blanco */
+    margin: 0;
+    
+    /* Centrado */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    text-align: center;
-}
-
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    width: 90%;
-    max-width: 400px;
-}
-
-#photo-frame {
-    width: 100%;
-    height: 300px;
-    background: #eee;
-    margin: 20px 0;
-    border-radius: 10px;
+    
+    /* Para la animación */
     overflow: hidden;
+    position: relative;
+}
+
+
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Necesario para que z-index funcione */
+    z-index: 1;         /* Capa 1 (por encima del fondo) */
+}
+
+h1 { margin-bottom: 20px; color: #e50914; /* Rojo Netflix */ }
+
+/* --- ESTILO DEL CARRUSEL --- */
+.carousel-container {
     display: flex;
-    align-items: center;
+    
+    /* ESTO ES LO NUEVO: Centra las fotos horizontalmente */
     justify-content: center;
+    align-items: center; 
+    
+    /* Mantenemos el scroll y el espacio */
+    overflow-x: auto; 
+    gap: 15px;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    
+    /* Aseguramos que ocupe todo el ancho disponible */
+    width: 100%;
+    min-height: 160px; 
+    
+    /* Estilo de la barra de desplazamiento */
+    scrollbar-width: thin; 
+    scrollbar-color: #e50914 #141414;
+    
 }
 
-#current-photo {
-    max-width: 100%;
-    max-height: 100%;
+/* IMPORTANTE: Si tienes muchas fotos y se salen de la pantalla,
+   necesitamos que la alineación vuelva a la izquierda para poder hacer scroll bien.
+   Este truco de CSS lo hace automático: */
+@media (max-width: 600px) {
+    .carousel-container {
+        justify-content: flex-start; /* En celulares, mejor alinear al inicio para facilitar el dedo */
+    }
 }
 
-button {
-    background-color: #ff4d4d;
+.thumbnail {
+    height: 150px; /* Altura fija */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    flex-shrink: 0; /* Evita que se aplasten */
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1); /* Efecto pop al pasar el mouse */
+    border-color: #e50914;
+}
+
+/* --- BOTONES --- */
+.btn-main {
+    background-color: #e50914;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 24px;
+    border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: transform 0.1s;
-}
-
-button:active {
-    transform: scale(0.95);
-}
-
-input {
     margin-top: 10px;
-    width: 100%;
+}
+
+/* --- EL MODAL (PANTALLA COMPLETA) --- */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.95); /* Casi negro total */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.hidden { display: none !important; }
+
+.modal-content {
+    width: 90%;
+    max-width: 600px;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#modal-img {
+    max-width: 100%;
+    max-height: 100%;
+    transition: transform 0.3s ease; /* Suavidad al rotar */
+}
+
+/* Controles del Modal */
+.modal-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.btn-icon {
+    background: #333;
+    color: white;
+    border: none;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-danger { background: #b20710; }
+
+.close-modal {
+    position: absolute;
+    top: 20px; right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+/* --- ANIMACIÓN DE FONDO --- */
+.floating-emoji {
+    position: absolute;
+    bottom: -50px; /* Empiezan escondidos abajo */
+    z-index: -1;   /* Se quedan DETRÁS del texto y las fotos */
+    opacity: 0.8;
+    pointer-events: none; /* Para que no molesten al hacer clic */
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg); /* Suben hasta salir de pantalla */
+        opacity: 0;
+    }
 }
